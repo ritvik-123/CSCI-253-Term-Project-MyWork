@@ -2,10 +2,20 @@ using UnityEngine;
 
 namespace TaskShape
 {
+    public enum ShapeColor
+    {
+        Gray,
+        Green,
+        Orange,
+        Blue,
+        Purple
+    }
+
     public enum ShapeType
     {
         Cube,
-        Sphere
+        Sphere,
+        Cylinder
     }
 
     /// <summary>
@@ -32,6 +42,8 @@ namespace TaskShape
         /// <returns></returns>
         ShapeType Type();
 
+        ShapeColor Color(); 
+
         /// <summary>
         /// Returns the transform of the shape. This is needed for the Equivalent function.
         /// </summary>
@@ -43,15 +55,17 @@ namespace TaskShape
     {
         // the object that the Cube represents
         public GameObject obj;
+        public ShapeColor color;
 
-        public Cube(GameObject newObj)
+        public Cube(GameObject newObj, ShapeColor newColor)
         {
             obj = newObj;
+            color = newColor;
         }
 
         public bool Equivalent(Shape other)
         {
-            if (other.Type() != ShapeType.Cube)
+            if (other.Type() != ShapeType.Cube || other.Color() != color)
             {
                 return false;
             }
@@ -75,6 +89,11 @@ namespace TaskShape
             return ShapeType.Cube;
         }
 
+        public ShapeColor Color()
+        {
+            return color;
+        }
+
         public Transform ShapeTransform()
         {
             return obj.transform;
@@ -84,15 +103,17 @@ namespace TaskShape
     public class Sphere : Shape
     {
         public GameObject obj;
+        public ShapeColor color;
 
-        public Sphere(GameObject newObj)
+        public Sphere(GameObject newObj, ShapeColor newColor)
         {
             obj = newObj;
+            color = newColor;
         }
 
         public bool Equivalent(Shape other)
         {
-            if (other.Type() != ShapeType.Sphere)
+            if (other.Type() != ShapeType.Sphere || other.Color() != color)
             {
                 return false;
             }
@@ -106,6 +127,58 @@ namespace TaskShape
         public ShapeType Type()
         {
             return ShapeType.Sphere;
+        }
+
+        public ShapeColor Color()
+        {
+            return color;
+        }
+
+        public Transform ShapeTransform()
+        {
+            return obj.transform;
+        }
+    }
+
+    public class Cylinder : Shape 
+    {
+        public GameObject obj;
+        public ShapeColor color;
+
+        public Cylinder(GameObject newObj, ShapeColor newColor)
+        {
+            obj = newObj;
+            color = newColor;
+        }
+
+        public bool Equivalent(Shape other)
+        {
+            if (other.Type() != ShapeType.Cylinder || other.Color() != color)
+            {
+                return false;
+            }
+
+            float transDelta = Vector3.Distance(obj.transform.position, other.ShapeTransform().position);
+            Vector3 rotDelta = Angles.SymmetryDelta(
+                    obj.transform.rotation.eulerAngles,
+                    other.ShapeTransform().rotation.eulerAngles,
+                    new Vector3(180.0f, 0.001f, 180.0f)
+                );
+
+            return rotDelta.x < Shape.rotationThreshold
+                   && rotDelta.y < Shape.rotationThreshold
+                   && rotDelta.z < Shape.rotationThreshold
+                   && transDelta < Shape.translationThreshold;
+        }
+
+        public ShapeType Type()
+        {
+            return ShapeType.Cylinder;
+        }
+
+        public ShapeColor Color()
+        {
+            return color;
         }
 
         public Transform ShapeTransform()
