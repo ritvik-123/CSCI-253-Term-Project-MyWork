@@ -33,12 +33,13 @@ public class ItemObject : MonoBehaviour
 
     void Update()
     {
-        if (shape.Equivalent(goal))
-        {
-            Debug.Log($"{name}: Goal!");
-        } else
-        {
-            Debug.Log($"{name}: No Goal!");
-        }
+        shape.Equivalent(goal);
+        // if (shape.Equivalent(goal))
+        // {
+        //     Debug.Log($"{name}: Goal!");
+        // } else
+        // {
+        //     Debug.Log($"{name}: No Goal!");
+        // }
     }
 }

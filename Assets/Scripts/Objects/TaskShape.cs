@@ -72,16 +72,15 @@ namespace TaskShape
 
             float transDelta = (obj.transform.position - other.ShapeTransform().position).magnitude;
 
-            Vector3 rotDelta = Angles.SymmetryDelta(
-                    obj.transform.rotation.eulerAngles,
-                    other.ShapeTransform().rotation.eulerAngles,
-                    new Vector3(90.0f, 90.0f, 90.0f)
+            float rotDelta = Angles.SymmetryDelta(
+                    obj.transform.rotation,
+                    other.ShapeTransform().rotation,
+                    new Vector3(4, 4, 4)
                 );
-            Debug.Log(rotDelta);
-            return rotDelta.x < Shape.rotationThreshold
-                   && rotDelta.y < Shape.rotationThreshold
-                   && rotDelta.z < Shape.rotationThreshold
-                   && transDelta < Shape.translationThreshold;
+            Debug.Log($"us: {obj.transform.rotation.eulerAngles}");
+            Debug.Log($"them: {other.ShapeTransform().rotation.eulerAngles}");
+            Debug.Log($"delta: {rotDelta}");
+            return rotDelta < Shape.rotationThreshold && transDelta < Shape.translationThreshold;
         }
 
         public ShapeType Type()
@@ -159,16 +158,14 @@ namespace TaskShape
             }
 
             float transDelta = Vector3.Distance(obj.transform.position, other.ShapeTransform().position);
-            Vector3 rotDelta = Angles.SymmetryDelta(
-                    obj.transform.rotation.eulerAngles,
-                    other.ShapeTransform().rotation.eulerAngles,
-                    new Vector3(180.0f, 0.001f, 180.0f)
+            float rotDelta = Angles.SymmetryDelta(
+                    obj.transform.rotation,
+                    other.ShapeTransform().rotation,
+                    new Vector3(2, 360, 2)
                 );
 
-            return rotDelta.x < Shape.rotationThreshold
-                   && rotDelta.y < Shape.rotationThreshold
-                   && rotDelta.z < Shape.rotationThreshold
-                   && transDelta < Shape.translationThreshold;
+            Debug.Log($"Delta: {rotDelta}");
+            return rotDelta < Shape.rotationThreshold && transDelta < Shape.translationThreshold;
         }
 
         public ShapeType Type()
@@ -203,28 +200,32 @@ namespace TaskShape
         /// <returns>
         /// A Vector3 containing the Euler angle distance between a and b, accounting for rotational symmetries.
         /// </returns>
-        static public Vector3 SymmetryDelta(Vector3 a, Vector3 b, Vector3 symmetries)
+        static public float SymmetryDelta(Quaternion a, Quaternion b, Vector3 symmetries)
         {
-            // modulus the things
-            Vector3 a_symmetric = new Vector3(a.x % symmetries.x, a.y % symmetries.y, a.z % symmetries.z);
-            Vector3 b_symmetric = new Vector3(b.x % symmetries.x, b.y % symmetries.y, b.z % symmetries.z);
+            Transform t = new GameObject("angles").transform;
+            t.position = Vector3.zero;
+            t.rotation = a;
+            float minimumDelta = 360.0f;
 
-            // account for the fact that we might be closer to the symmetry above us than the one below us
-            float inverted;
-            for (int i = 0; i < 3; i++)
+            // iterate over all possible symmetries
+            for (int j = 0; j < symmetries.x; j++)
             {
-                inverted = Mathf.Abs(a_symmetric[i] - symmetries[i]);
-                a_symmetric[i] = inverted < a_symmetric[i] ? inverted : a_symmetric[i];
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                inverted = Mathf.Abs(b_symmetric[i] - symmetries[i]);
-                b_symmetric[i] = inverted < b_symmetric[i] ? inverted : b_symmetric[i];
+                t.RotateAround(t.position, t.right, 360.0f / symmetries.x);
+                for (int k = 0; k < symmetries.y; k++)
+                {
+                    t.RotateAround(t.position, t.up, 360.0f / symmetries.y);
+                    for (int l = 0; l < symmetries.z; l++)
+                    {
+                        t.RotateAround(t.position, t.forward, 360.0f / symmetries.z);
+                        if (Quaternion.Angle(t.rotation, b) < minimumDelta)
+                        {
+                            minimumDelta = Quaternion.Angle(t.rotation, b);
+                        }
+                    }
+                }
             }
 
-            // return the absolute value of the difference
-            Vector3 delta = a_symmetric - b_symmetric;
-            return new Vector3(Mathf.Abs(delta.x), Mathf.Abs(delta.y), Mathf.Abs(delta.z));
+            return minimumDelta;
         }
     }
 }
