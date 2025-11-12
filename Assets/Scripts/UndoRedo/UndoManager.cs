@@ -9,6 +9,7 @@ public class UndoManager : MonoBehaviour
     private Stack<ObjectState> redoStack = new Stack<ObjectState>();
 
     // ------------------------------------------------------------------------------------
+    // TODO: Debug Undo/Redo Logic
     // Viewable stacks in Unity for debugging
     [SerializeField] private List<ObjectState> debugUndoStack = new List<ObjectState>();        
     [SerializeField] private List<ObjectState> debugRedoStack = new List<ObjectState>();
