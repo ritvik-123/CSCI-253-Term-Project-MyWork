@@ -21,6 +21,7 @@ public class UndoManagerControl : UndoManager
         Debug.Log($"undoStack size: {undoStack.Count}, redoStack size: {redoStack.Count}");
     }
 
+    // Awake is called at start
     protected override void Awake()
     {
         // Guarantees only one UndoManager can exist at once (so control and experimental can't conflict)
@@ -30,13 +31,28 @@ public class UndoManagerControl : UndoManager
     // Update is called once per frame
     void Update()
     {
-        // Keyboard controls for simulator testing
-        // Meta Controller mappings in Assets/Scripts/ObjectManipulation/Control.cs
+        // Reads keyboard controls to trigger undo/redo (for simulator testing)
         if (Keyboard.current.zKey.wasPressedThisFrame)
         {
             Undo();
         }
         if (Keyboard.current.xKey.wasPressedThisFrame)
+        {
+            Redo();
+        }
+    }
+    // Reads Meta Controller input to trigger undo/redo
+    public override void OnUndoInput(bool isHeld, bool justPressed)
+    {
+        // Only react to a single press
+        if (justPressed)
+        {
+            Undo();
+        }
+    }
+    public override void OnRedoInput(bool isHeld, bool justPressed)
+    {
+        if (justPressed)
         {
             Redo();
         }
@@ -52,6 +68,7 @@ public class UndoManagerControl : UndoManager
         GrabEventSystem.OnGrab.RemoveListener(OnObjectGrab);
     }
 
+    // Grab Events for object grab
     private void OnObjectGrab(GameObject grabbedObject, string hand)
     {
         // Check if grabbed object is undoable and saves state
@@ -62,22 +79,8 @@ public class UndoManagerControl : UndoManager
         }
     }
 
-    public void SaveState(UndoableObject gameObject)
-    {
-        if (gameObject == null) { return; }
-        if (isRestoring) { return; }
-        ObjectState state = new ObjectState(gameObject);
-        undoStack.Push(state);
-
-        // Remove any redo history
-        redoStack.Clear();
-
-        // For testing
-        LogState($"{gameObject.name} saved at:", undoStack.Peek());
-        SyncDebugStacks();
-    }
-
-    public override void Undo()
+    // Undo and Redo functions
+    public void Undo()
     {
         if (undoStack.Count < 1)
         {
@@ -103,7 +106,7 @@ public class UndoManagerControl : UndoManager
         SyncDebugStacks();
     }
 
-    public override void Redo()
+    public void Redo()
     {
         if (redoStack.Count < 1)
         {
@@ -129,6 +132,21 @@ public class UndoManagerControl : UndoManager
         LogState($"{redoState.targetObject.name} state redone to:", redoState);
         SyncDebugStacks();
 
+    }
+
+    public void SaveState(UndoableObject gameObject)
+    {
+        if (gameObject == null) { return; }
+        if (isRestoring) { return; }
+        ObjectState state = new ObjectState(gameObject);
+        undoStack.Push(state);
+
+        // Remove any redo history
+        redoStack.Clear();
+
+        // For testing
+        LogState($"{gameObject.name} saved at:", undoStack.Peek());
+        SyncDebugStacks();
     }
 
     private void LogState(string message, ObjectState newState)

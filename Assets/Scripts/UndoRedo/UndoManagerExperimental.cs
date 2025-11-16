@@ -26,8 +26,7 @@ public class UndoManagerExperimental : UndoManager
             SaveState(grabbedObject);
         }
 
-        // Keyboard controls for simulator testing
-        // Meta Controller mappings in Assets/Scripts/ObjectManipulation/Control.cs
+        // Reads keyboard controls to trigger undo/redo (for simulator testing)
         if (Keyboard.current.zKey.isPressed && !Keyboard.current.xKey.isPressed)
         {
             Undo();
@@ -43,6 +42,25 @@ public class UndoManagerExperimental : UndoManager
         if (Keyboard.current.xKey.wasReleasedThisFrame)
         {
             isRestoring = false;
+        }
+    }
+
+    // Reads Meta Controller input to trigger undo/redo
+    public override void OnUndoInput(bool isHeld, bool justPressed)
+    {
+        // Reacts to holding down X
+        if (!isHeld)
+        {
+            Undo();
+        }
+    }
+
+    public override void OnRedoInput(bool isHeld, bool justPressed)
+    {
+        // Reacts to holding down Y
+        if (!isHeld)
+        {
+            Redo();
         }
     }
     
@@ -79,6 +97,34 @@ public class UndoManagerExperimental : UndoManager
         objectIsBeingGrabbed = false;
     }
 
+    // Undo and Redo functions
+    public void Undo()
+    {
+        if (currIndex < 0)
+        {
+            Debug.Log($"Nothing to undo.");
+            return; 
+        }
+        isRestoring = true;
+
+        // Iterate backwards through the Object History
+        ObjectState savedState = objectHistory[--currIndex];
+        savedState.RestoreState();
+    }
+
+    public void Redo()
+    {
+        if (currIndex > objectHistory.Count - 1)
+        {
+            Debug.Log($"Nothing to redo.");
+            return; 
+        }
+        
+        // Iterate forwards through the object history list
+        ObjectState savedState = objectHistory[++currIndex];
+        savedState.RestoreState();
+    }
+
     // Save state functions
     public void SaveInitialState(UndoableObject gameObject)
     {
@@ -101,33 +147,5 @@ public class UndoManagerExperimental : UndoManager
             objectHistory.Add(current);
             currIndex = objectHistory.Count - 1;
         }
-    }
-
-    // Undo and Redo functions
-    public override void Undo()
-    {
-        if (currIndex < 0)
-        {
-            Debug.Log($"Nothing to undo.");
-            return; 
-        }
-        isRestoring = true;
-
-        // Iterate backwards through the Object History
-        ObjectState savedState = objectHistory[--currIndex];
-        savedState.RestoreState();
-    }
-
-    public override void Redo()
-    {
-        if (currIndex > objectHistory.Count - 1)
-        {
-            Debug.Log($"Nothing to redo.");
-            return; 
-        }
-        
-        // Iterate forwards through the object history list
-        ObjectState savedState = objectHistory[++currIndex];
-        savedState.RestoreState();
     }
 }
