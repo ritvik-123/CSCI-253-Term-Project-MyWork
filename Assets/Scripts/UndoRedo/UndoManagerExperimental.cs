@@ -55,6 +55,7 @@ public class UndoManagerExperimental : UndoManager
     private void OnDisable()
     {
         GrabEventSystem.OnGrab.RemoveListener(OnObjectGrab);
+        GrabEventSystem.OnRelease.RemoveListener(OnObjectRelease);
     }
 
     // Grab Events for object grab and object release
