@@ -128,7 +128,7 @@ public class ManipulationControl : MonoBehaviour
     {
         // Get the left controller device
         UnityEngine.XR.InputDevice leftHand =
-            UnityEngine.XR.InputDevices.GetDeviceAtXRNode(UnityEngine.XR.XRNode.RightHand);
+            UnityEngine.XR.InputDevices.GetDeviceAtXRNode(UnityEngine.XR.XRNode.LeftHand);
 
         if (!leftHand.isValid || UndoManager.Instance == null)
             return;
