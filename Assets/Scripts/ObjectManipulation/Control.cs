@@ -14,11 +14,11 @@ public class ManipulationControl : MonoBehaviour
     public GameObject leftController;
     public GameObject rightController;
 
-    private ProjectInputActions controls;
+    private XRIDefaultInputActions controls;
 
     void Awake()
     {
-        controls = new ProjectInputActions();
+        controls = new XRIDefaultInputActions();
     }
 
     void OnEnable()
@@ -50,9 +50,8 @@ public class ManipulationControl : MonoBehaviour
         rightGripAction.started -= RightGripStarted;
         rightGripAction.canceled -= RightGripCanceled;
 
+        // Disable (you had Enable() here by mistake)
         controls.Disable();
-
-        transform.SetParent(null, true);
 
         // If you subscribed to global events above, unsubscribe here:
         // GrabEventSystem.OnGrab.RemoveListener(OnAnyGrab);
@@ -65,14 +64,14 @@ public class ManipulationControl : MonoBehaviour
         if (leftController == null) return;
 
         float delta = Vector3.Distance(transform.position, leftController.transform.position);
-        Debug.Log($"Grip (Left) pressed. Distance={delta:F3}");
+        //Debug.Log($"Grip (Left) pressed. Distance={delta:F3}");
 
         if (delta < grabRadius && transform.parent == null)
         {
             transform.SetParent(leftController.transform, true);
             IsGrabbedGlobal = true;
-            GrabEventSystem.TriggerGrab(gameObject, "Left");
-            Debug.Log($"Grabbed {name} (left hand)");
+            GrabEventSystem.TriggerGrab(gameObject, "Left", delta);
+            //Debug.Log($"Grabbed {name} (left hand)");
         }
     }
 
@@ -84,7 +83,7 @@ public class ManipulationControl : MonoBehaviour
             transform.SetParent(null, true);
             IsGrabbedGlobal = false;
             GrabEventSystem.TriggerRelease(gameObject, "Left");
-            Debug.Log($"Released {name} (left hand)");
+            //Debug.Log($"Released {name} (left hand)");
         }
     }
 
@@ -98,8 +97,8 @@ public class ManipulationControl : MonoBehaviour
         {
             transform.SetParent(rightController.transform, true);
             IsGrabbedGlobal = true;
-            GrabEventSystem.TriggerGrab(gameObject, "Right");
-            Debug.Log($"Grabbed {name} (right hand)");
+            GrabEventSystem.TriggerGrab(gameObject, "Right", delta);
+            //Debug.Log($"Grabbed {name} (right hand)");
         }
     }
 
@@ -111,7 +110,7 @@ public class ManipulationControl : MonoBehaviour
             transform.SetParent(null, true);
             IsGrabbedGlobal = false;
             GrabEventSystem.TriggerRelease(gameObject, "Right");
-            Debug.Log($"Released {name} (right hand)");
+            //Debug.Log($"Released {name} (right hand)");
         }
     }
 
@@ -119,4 +118,3 @@ public class ManipulationControl : MonoBehaviour
     // private void OnAnyGrab(GameObject obj, string hand) { /* ... */ }
     // private void OnAnyRelease(GameObject obj, string hand) { /* ... */ }
 }
-

@@ -8,7 +8,7 @@ public class ManipulationExperimentA : MonoBehaviour
     public Transform leftController;
     public Transform rightController;
 
-    private ProjectInputActions controls;
+    private XRIDefaultInputActions controls;
 
     private bool grabbedLeft = false;
     private bool grabbedRight = false;
@@ -20,7 +20,7 @@ public class ManipulationExperimentA : MonoBehaviour
 
     void Awake()
     {
-        controls = new ProjectInputActions();
+        controls = new XRIDefaultInputActions();
     }
 
     void Start()
@@ -55,10 +55,7 @@ public class ManipulationExperimentA : MonoBehaviour
         rightGripAction.started -= RightGripStarted;
         rightGripAction.canceled -= RightGripCanceled;
 
-        controls.Disable();
-
-        grabbedLeft = false;
-        grabbedRight = false;
+        controls.Enable();
     }
 
     void Update()
@@ -102,7 +99,7 @@ public class ManipulationExperimentA : MonoBehaviour
         float delta = (transform.position - leftController.position).magnitude;
         if (delta < grabRadius)
         {
-            Debug.Log($"Grabbed {name} (left hand, rotation)"); // create an event
+            //Debug.Log($"Grabbed {name} (left hand, rotation)"); // create an event
             rotOffset = transform.rotation * Quaternion.Inverse(leftController.rotation);
             grabbedLeft = true;
         }
@@ -115,7 +112,7 @@ public class ManipulationExperimentA : MonoBehaviour
     {
         if (grabbedLeft)
         {
-            Debug.Log($"Released {name} (left hand, rotation)");
+            //Debug.Log($"Released {name} (left hand, rotation)");
             grabbedLeft = false;
         }
     }
@@ -128,7 +125,7 @@ public class ManipulationExperimentA : MonoBehaviour
         float delta = (transform.position - rightController.position).magnitude;
         if (delta < grabRadius)
         {
-            Debug.Log($"Grabbed {name} (right hand, translation)");
+            //Debug.Log($"Grabbed {name} (right hand, translation)");
             grabbedRight = true;
         }
     }
@@ -140,7 +137,7 @@ public class ManipulationExperimentA : MonoBehaviour
     {
         if (grabbedRight)
         {
-            Debug.Log($"Released {name} (right hand, translation)");
+            //Debug.Log($"Released {name} (right hand, translation)");
             grabbedRight = false;
         }
     }

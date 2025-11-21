@@ -11,13 +11,13 @@ public class ItemNavigation : MonoBehaviour
     {
         if (itemObject == null || goalObject == null)
         {
-            Debug.LogError($"{name}: Missing item or goal object reference!");
+            //Debug.LogError($"{name}: Missing item or goal object reference!");
             return;
         }
 
         if (lineNav == null)
         {
-            Debug.LogError($"{name}: GroundLineNavigation reference missing!");
+            //Debug.LogError($"{name}: GroundLineNavigation reference missing!");
             return;
         }
 
