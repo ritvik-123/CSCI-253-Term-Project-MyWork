@@ -12753,6 +12753,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1767192433, guid: 53c9f7aa6447c95c1925217d953e9d46, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767192433, guid: 53c9f7aa6447c95c1925217d953e9d46, type: 3}
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
@@ -12766,7 +12770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1767192437, guid: 53c9f7aa6447c95c1925217d953e9d46, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1767192439, guid: 53c9f7aa6447c95c1925217d953e9d46, type: 3}
       propertyPath: m_Enabled
@@ -22961,16 +22965,16 @@ MonoBehaviour:
   inRangeRadius: 2
   baseColorProp: _BaseColor
   emissionProp: _EmissionColor
-  idleColor: {r: 0.45, g: 0.85, b: 1, a: 0.22}
+  idleColor: {r: 0.45, g: 0.85, b: 1, a: 0.16470589}
   inRangeColor: {r: 0.55, g: 0.95, b: 1, a: 0.3}
   grabbedColor: {r: 1, g: 0.75, b: 0.35, a: 0.4}
   idleSpeed: 2.2
   inRangeSpeed: 2.8
   grabbedSpeed: 3.2
-  alphaMin: 0.004
-  alphaMax: 0.191
-  emissionMin: 0.1
-  emissionMax: 0.64
+  alphaMin: 0
+  alphaMax: 0.113
+  emissionMin: 0
+  emissionMax: 0.37
 --- !u!114 &1223100204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22987,12 +22991,83 @@ MonoBehaviour:
   rightController: {fileID: 1197674162}
   outerRadius: 2
   innerRadius: 0.08
-  loopClip: {fileID: 8300000, guid: a35ddcb4c79296b42a24deac7db79b20, type: 3}
-  grabClip: {fileID: 8300000, guid: 8cb2470fba7037d43b4c763a885b8b9e, type: 3}
-  baseVolume: 0.25
-  nearBoost: 0.35
-  pitchBend: 0.1
-  spatialBlend: 1
+  loopClip: {fileID: 8300000, guid: a26ae1ac874ae244b801059dc35bd9d5, type: 3}
+  grabClip: {fileID: 8300000, guid: e08ec3bca1dc1914a8577ec20eb38697, type: 3}
+  dropClip: {fileID: 8300000, guid: feabbbc3992e3874fadc71755c7d290f, type: 3}
+  baseVolume: 0.246
+  nearBoost: 1
+  pitchBend: 0
+  spatialBlend: 0.75
+--- !u!114 &1223100210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223100188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16179c178877024428648727c7f1c2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftController: {fileID: 430978736}
+  rightController: {fileID: 1197674157}
+  proximityRadius: 2
+  hissPulseDuration: 0.03
+  hissMaxInterval: 0.3
+  hissMinInterval: 0.05
+  hissAmplitudeRange: {x: 0.05, y: 2}
+  hissAmplitudeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  grabbedReferenceDistance: 0.2
+  grabbedTickDuration: 0.03
+  grabbedAmplitudeRange: {x: 0.05, y: 2}
+  grabbedAmplitudeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.99190736
+      value: 1.1371818
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1223688207 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5172347158919309857, guid: 1dfde1da857030f8fb1b860522d9891b, type: 3}
@@ -33125,19 +33200,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542571a710ac4240a1a10b1559686ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabAmplitude: 0.6
-  grabDuration: 0.08
+  leftController: {fileID: 0}
+  rightController: {fileID: 0}
   holdAmplitude: 0.2
-  holdPulseDuration: 0.06
-  holdInterval: 0.12
-  releaseAmplitude: 0.6
-  releaseDuration: 0.08
-  useXRNodeFallback: 1
-  recacheTimeoutSeconds: 2
-  resendAttempts: 3
-  resendDelay: 0.35
-  interactorRefs: []
-  controllerRefs: []
+  holdTickDuration: 0.03
 --- !u!1 &1871879070 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4367198419856413426, guid: 1dfde1da857030f8fb1b860522d9891b, type: 3}
@@ -33859,6 +33925,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1223100204}
+    - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1223100210}
   m_SourcePrefab: {fileID: 100100000, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
 --- !u!1 &1967198767 stripped
 GameObject:
