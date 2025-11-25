@@ -7,6 +7,8 @@ public class ManipulationControl : MonoBehaviour
     // Optional global: not used below, but keep if others read it
     public static bool IsGrabbedGlobal = false;
 
+    public bool IsGrabbed = false;
+
     [Header("Grab Settings")]
     public float grabRadius = 0.2f;
 
@@ -70,6 +72,7 @@ public class ManipulationControl : MonoBehaviour
         {
             transform.SetParent(leftController.transform, true);
             IsGrabbedGlobal = true;
+            IsGrabbed = true;
             GrabEventSystem.TriggerGrab(gameObject, "Left", delta);
             //Debug.Log($"Grabbed {name} (left hand)");
         }
@@ -82,6 +85,7 @@ public class ManipulationControl : MonoBehaviour
         {
             transform.SetParent(null, true);
             IsGrabbedGlobal = false;
+            IsGrabbed = false;
             GrabEventSystem.TriggerRelease(gameObject, "Left");
             //Debug.Log($"Released {name} (left hand)");
         }
@@ -97,6 +101,7 @@ public class ManipulationControl : MonoBehaviour
         {
             transform.SetParent(rightController.transform, true);
             IsGrabbedGlobal = true;
+            IsGrabbed = true;
             GrabEventSystem.TriggerGrab(gameObject, "Right", delta);
             //Debug.Log($"Grabbed {name} (right hand)");
         }
@@ -109,6 +114,7 @@ public class ManipulationControl : MonoBehaviour
         {
             transform.SetParent(null, true);
             IsGrabbedGlobal = false;
+            IsGrabbed = false;
             GrabEventSystem.TriggerRelease(gameObject, "Right");
             //Debug.Log($"Released {name} (right hand)");
         }

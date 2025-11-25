@@ -14,6 +14,7 @@ public class AudioControl : MonoBehaviour
     public AudioClip loopClip;          // plays while in-range (not grabbed)
     public AudioClip grabClip;          // one-shot when grabbed
     public AudioClip dropClip;          // one-shot when released
+    public AudioClip goalClip;          // one-shot when goal reached
 
     [Header("Levels")]
     [Range(0f,1f)] public float baseVolume = 0.25f; // baseline at outer radius
@@ -66,6 +67,15 @@ public class AudioControl : MonoBehaviour
             if (loopSrc.isPlaying) loopSrc.Stop();
 
             // block the loop until 1s from now (set 10f if you want 10 seconds)
+            loopResumeAtTime = Time.time + 1.3f;
+        }
+        bool goalReached = GetComponent<SimpleGoalChecker>().goalReached;
+        if (goalReached && goalClip)
+        {
+            oneShotSrc.PlayOneShot(goalClip, 1f);
+            goalReached = false; // prevent replaying
+
+            if (loopSrc.isPlaying) loopSrc.Stop();
             loopResumeAtTime = Time.time + 1.3f;
         }
 

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR;
 
-public class ExperimentProximityAndGrabHaptics_Generic : MonoBehaviour
+public class HapticsGeneric : MonoBehaviour
 {
     [Header("Controllers (same as in ManipulationControl)")]
     public GameObject leftController;
