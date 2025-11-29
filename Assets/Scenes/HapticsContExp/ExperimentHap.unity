@@ -2296,7 +2296,7 @@ MonoBehaviour:
   spatialBlend: 0.75
   participantId: P01
   condition: ExpAudio
-  trialIndex: 0
+  trialIndex: 2
   autoIncrementTrialIndex: 1
   autoWriteCsvOnGoal: 1
   csvFileName: audio_metrics_exp.csv
@@ -35039,7 +35039,7 @@ MonoBehaviour:
   spatialBlend: 0.75
   participantId: P01
   condition: ExpAudio
-  trialIndex: 0
+  trialIndex: 1
   autoIncrementTrialIndex: 1
   autoWriteCsvOnGoal: 1
   csvFileName: audio_metrics_exp.csv
