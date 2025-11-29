@@ -2294,6 +2294,12 @@ MonoBehaviour:
   nearBoost: 1
   pitchBend: 0
   spatialBlend: 0.75
+  participantId: P01
+  condition: ExpAudio
+  trialIndex: 0
+  autoIncrementTrialIndex: 1
+  autoWriteCsvOnGoal: 1
+  csvFileName: audio_metrics_exp.csv
   taskStartTime: -1
   taskCompletionTime: -1
   wrongGrabCount: 0
@@ -6360,11 +6366,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  audioControl: {fileID: 1332712653}
-  participantId: P01
-  condition: audio_feedback
-  trialIndex: 0
-  autoIncrementTrialIndex: 1
 --- !u!23 &453762885
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7933,11 +7934,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  audioControl: {fileID: 2020937187}
-  participantId: P01
-  condition: audio_feedback
-  trialIndex: 0
-  autoIncrementTrialIndex: 1
 --- !u!23 &589454161
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10427,11 +10423,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  audioControl: {fileID: 148100170}
-  participantId: P01
-  condition: audio_feedback
-  trialIndex: 0
-  autoIncrementTrialIndex: 1
 --- !u!23 &750483439
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18024,6 +18015,12 @@ MonoBehaviour:
   nearBoost: 1
   pitchBend: 0
   spatialBlend: 0.75
+  participantId: P01
+  condition: ExpAudio
+  trialIndex: 0
+  autoIncrementTrialIndex: 1
+  autoWriteCsvOnGoal: 1
+  csvFileName: audio_metrics_exp.csv
   taskStartTime: -1
   taskCompletionTime: -1
   wrongGrabCount: 0
@@ -35040,6 +35037,12 @@ MonoBehaviour:
   nearBoost: 1
   pitchBend: 0
   spatialBlend: 0.75
+  participantId: P01
+  condition: ExpAudio
+  trialIndex: 0
+  autoIncrementTrialIndex: 1
+  autoWriteCsvOnGoal: 1
+  csvFileName: audio_metrics_exp.csv
   taskStartTime: -1
   taskCompletionTime: -1
   wrongGrabCount: 0
