@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.Events;
 
 public class SimpleGoalChecker : MonoBehaviour
@@ -11,11 +12,11 @@ public class SimpleGoalChecker : MonoBehaviour
     public float triggerDistance = 0.2f; // how close is "placed in the goal"
 
     [Header("Events")]
-    public UnityEvent onGoalReached;
+    public UnityEvent onGoalReached; // hook to AudioControl.PlayGoalAudio
+
+    public static int goalCount = 0;
 
     bool hasTriggered = false;
-
-    public bool goalReached = false;
 
     void Update()
     {
@@ -27,15 +28,22 @@ public class SimpleGoalChecker : MonoBehaviour
         if (dist <= triggerDistance)
         {
             hasTriggered = true;
-            onGoalReached?.Invoke();
-            Debug.Log("Goal reached!");
-            goalReached = true;
-            DestroyBoth();
+            Debug.Log("SimpleGoalChecker: Goal reached!");
+
+            onGoalReached?.Invoke(); // this calls AudioControl.PlayGoalAudio
+
+            StartCoroutine(DestroyItemAfterDelay(1.6f));   // wait 1.6 seconds before destroy
         }
     }
-    public void DestroyBoth()
+
+    private IEnumerator DestroyItemAfterDelay(float delay)
     {
-        Destroy(item.gameObject);
+        yield return new WaitForSeconds(delay);
+
+        if (item != null)
+        {
+            Destroy(item.gameObject);
+            goalCount++;
+        }
     }
 }
-

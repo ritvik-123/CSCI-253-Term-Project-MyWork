@@ -151,11 +151,11 @@
   <Project Path="Unity.XR.ARFoundation.Editor.csproj" />
   <Project Path="Unity.EditorCoroutines.Editor.csproj" />
   <Project Path="Oculus.Haptics.csproj" />
-  <Project Path="Unity.XR.Hands.Samples.VisualizerSample.csproj" />
   <Project Path="Meta.XR.Guides.Editor.csproj" />
   <Project Path="Meta.VoiceSDK.Mic.Other.csproj" />
   <Project Path="Meta.Voice.Hub.Runtime.csproj" />
   <Project Path="Unity.XR.OpenXR.Features.MetaQuestSupport.csproj" />
+  <Project Path="Unity.XR.Hands.Samples.VisualizerSample.csproj" />
   <Project Path="Meta.XR.ImmersiveDebugger.Interface.csproj" />
   <Project Path="Meta.XR.Editor.UPST.Notifications.csproj" />
   <Project Path="Oculus.Interaction.Samples.Editor.csproj" />

@@ -38,6 +38,8 @@ public class VisualGlowPulseVanish : MonoBehaviour
 
     private Material mat;
 
+    bool goalReached = false;
+
     void Awake()
     {
         if (!shellRenderer) shellRenderer = GetComponentInChildren<Renderer>();
@@ -66,6 +68,11 @@ public class VisualGlowPulseVanish : MonoBehaviour
     {
         if (!mat) return;
 
+        if (goalReached)
+        {
+            if (shellRenderer) shellRenderer.enabled = false;
+            return;
+        }
         bool isGrabbed = transform.parent == leftController || transform.parent == rightController;
 
         // 🔸 Hide ONLY the bubble when grabbed
@@ -98,6 +105,11 @@ public class VisualGlowPulseVanish : MonoBehaviour
         if (mat.HasProperty("_Smoothness"))            mat.SetFloat("_Smoothness", glossOff * 0.2f);
         if (mat.HasProperty("_SpecularHighlights"))    mat.SetFloat("_SpecularHighlights", glossOff);
         if (mat.HasProperty("_EnvironmentReflections"))mat.SetFloat("_EnvironmentReflections", glossOff);
+    }
+
+    public void OnGoalReached()
+    {
+        goalReached = true;
     }
 
 }

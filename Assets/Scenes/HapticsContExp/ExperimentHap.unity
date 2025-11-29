@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.020954039, g: 0.15107632, b: 0.4113207, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 1951292425}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2294,6 +2294,14 @@ MonoBehaviour:
   nearBoost: 1
   pitchBend: 0
   spatialBlend: 0.75
+  taskStartTime: -1
+  taskCompletionTime: -1
+  wrongGrabCount: 0
+  prematureReleaseCount: 0
+  badPlacementCount: 0
+  stateMisinterpretationCount: 0
+  lastCueToActionLatencyMs: -1
+  avgCueToActionLatencyMs: -1
 --- !u!64 &149372018
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6317,12 +6325,11 @@ MonoBehaviour:
   pulseDistance: 2
   goalDistance: 0.6
   idleColor: {r: 0.8980392, g: 0.39215687, b: 0.5568628, a: 1}
-  pulseColor: {r: 1, g: 0.7490196, b: 0.34901962, a: 1}
+  pulseColor: {r: 1, g: 0.98039216, b: 0, a: 1}
   goalReachedColor: {r: 0, g: 1, b: 0, a: 1}
-  pulseSpeed: 3.2
-  pulseMin: 0.5
-  pulseMax: 1.5
-  bubbleAlpha: 0.7
+  pulseSpeed: 6
+  bubbleAlpha: 0.35
+  brightness: 2
 --- !u!114 &453762884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6340,8 +6347,24 @@ MonoBehaviour:
   triggerDistance: 0.6
   onGoalReached:
     m_PersistentCalls:
-      m_Calls: []
-  goalReached: 0
+      m_Calls:
+      - m_Target: {fileID: 1332712653}
+        m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
+        m_MethodName: PlayGoalAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  audioControl: {fileID: 1332712653}
+  participantId: P01
+  condition: audio_feedback
+  trialIndex: 0
+  autoIncrementTrialIndex: 1
 --- !u!23 &453762885
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7875,12 +7898,11 @@ MonoBehaviour:
   pulseDistance: 2
   goalDistance: 0.6
   idleColor: {r: 0.8784314, g: 0.8392157, b: 0.87058824, a: 1}
-  pulseColor: {r: 1, g: 0.7490196, b: 0.34901962, a: 1}
+  pulseColor: {r: 1, g: 0.98039216, b: 0, a: 1}
   goalReachedColor: {r: 0, g: 1, b: 0, a: 1}
-  pulseSpeed: 3.2
-  pulseMin: 0.5
-  pulseMax: 1.5
-  bubbleAlpha: 0.7
+  pulseSpeed: 6
+  bubbleAlpha: 0.35
+  brightness: 2
 --- !u!114 &589454160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7898,8 +7920,24 @@ MonoBehaviour:
   triggerDistance: 0.6
   onGoalReached:
     m_PersistentCalls:
-      m_Calls: []
-  goalReached: 0
+      m_Calls:
+      - m_Target: {fileID: 2020937187}
+        m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
+        m_MethodName: PlayGoalAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  audioControl: {fileID: 2020937187}
+  participantId: P01
+  condition: audio_feedback
+  trialIndex: 0
+  autoIncrementTrialIndex: 1
 --- !u!23 &589454161
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8442,7 +8480,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cc869b41a24fac045be46750dd56fcac, type: 2}
+  - {fileID: 2100000, guid: 361046aead9436e4bbf33d4f22fc4ea1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9723,7 +9761,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cc869b41a24fac045be46750dd56fcac, type: 2}
+  - {fileID: 2100000, guid: 361046aead9436e4bbf33d4f22fc4ea1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10354,12 +10392,11 @@ MonoBehaviour:
   pulseDistance: 2
   goalDistance: 0.6
   idleColor: {r: 0.43137255, g: 0.75686276, b: 0.78431374, a: 1}
-  pulseColor: {r: 1, g: 0.7490196, b: 0.34901962, a: 1}
+  pulseColor: {r: 1, g: 0.98039216, b: 0, a: 1}
   goalReachedColor: {r: 0, g: 1, b: 0, a: 1}
-  pulseSpeed: 3.2
-  pulseMin: 0.5
-  pulseMax: 1.5
-  bubbleAlpha: 0.7
+  pulseSpeed: 6
+  bubbleAlpha: 0.35
+  brightness: 2
 --- !u!114 &750483438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10377,8 +10414,24 @@ MonoBehaviour:
   triggerDistance: 0.6
   onGoalReached:
     m_PersistentCalls:
-      m_Calls: []
-  goalReached: 0
+      m_Calls:
+      - m_Target: {fileID: 148100170}
+        m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
+        m_MethodName: PlayGoalAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  audioControl: {fileID: 148100170}
+  participantId: P01
+  condition: audio_feedback
+  trialIndex: 0
+  autoIncrementTrialIndex: 1
 --- !u!23 &750483439
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16030,7 +16083,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cc869b41a24fac045be46750dd56fcac, type: 2}
+  - {fileID: 2100000, guid: 361046aead9436e4bbf33d4f22fc4ea1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17971,6 +18024,14 @@ MonoBehaviour:
   nearBoost: 1
   pitchBend: 0
   spatialBlend: 0.75
+  taskStartTime: -1
+  taskCompletionTime: -1
+  wrongGrabCount: 0
+  prematureReleaseCount: 0
+  badPlacementCount: 0
+  stateMisinterpretationCount: 0
+  lastCueToActionLatencyMs: -1
+  avgCueToActionLatencyMs: -1
 --- !u!64 &1335114311
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34979,6 +35040,14 @@ MonoBehaviour:
   nearBoost: 1
   pitchBend: 0
   spatialBlend: 0.75
+  taskStartTime: -1
+  taskCompletionTime: -1
+  wrongGrabCount: 0
+  prematureReleaseCount: 0
+  badPlacementCount: 0
+  stateMisinterpretationCount: 0
+  lastCueToActionLatencyMs: -1
+  avgCueToActionLatencyMs: -1
 --- !u!64 &2021429196
 MeshCollider:
   m_ObjectHideFlags: 0
