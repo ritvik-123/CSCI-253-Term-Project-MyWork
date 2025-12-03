@@ -16,6 +16,10 @@ public class SimpleGoalChecker : MonoBehaviour
 
     public static int goalCount = 0;
 
+    public static float lastPlacementAccuracy = 0f;
+
+    public static System.Action<int> onAnyGoalIncrement;
+
     bool hasTriggered = false;
 
     void Update()
@@ -30,6 +34,8 @@ public class SimpleGoalChecker : MonoBehaviour
             hasTriggered = true;
             Debug.Log("SimpleGoalChecker: Goal reached!");
 
+            lastPlacementAccuracy = dist;
+
             onGoalReached?.Invoke(); // this calls AudioControl.PlayGoalAudio
 
             StartCoroutine(DestroyItemAfterDelay(1.6f));   // wait 1.6 seconds before destroy
@@ -43,7 +49,11 @@ public class SimpleGoalChecker : MonoBehaviour
         if (item != null)
         {
             Destroy(item.gameObject);
-            goalCount++;
+            SimpleGoalChecker.goalCount++;
+            SimpleGoalChecker.lastPlacementAccuracy = Vector3.Distance(item.position, goal.position);
+            onAnyGoalIncrement?.Invoke(SimpleGoalChecker.goalCount);
+            TaskTimer.MarkTaskNow();
+            MetricsCsvExporter.Instance?.ExportRow();
         }
     }
 }

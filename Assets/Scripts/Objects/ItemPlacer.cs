@@ -120,9 +120,9 @@ public class ItemPlacer : MonoBehaviour
         newItem.GetComponent<ItemObject>().color = ShapeColor.Green;
         newItem.GetComponent<ItemObject>().goalObject = newGoal;
 
-        // add the manipulation component to the item obejct
+        // add the manipulation component to the item object
         newItem.AddComponent<ManipulationControl>();
-        newItem.GetComponent<ManipulationControl>().grabRadius = 1.0f;
+        newItem.GetComponent<ManipulationControl>().grabRadius = 2.0f;
         newItem.GetComponent<ManipulationControl>().leftController = leftController;
         newItem.GetComponent<ManipulationControl>().rightController = rightController;
 

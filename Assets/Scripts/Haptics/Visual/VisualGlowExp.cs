@@ -61,7 +61,8 @@ public class VisualGlowPulseVanish : MonoBehaviour
         float targetRadius = Mathf.Max(0.0001f, grabRadius + shellPadding);
         float childScale = targetRadius / (meshRadiusLocal * parentScaleX);
 
-        shellRenderer.transform.localScale = Vector3.one * childScale;
+        shellRenderer.transform.localScale = Vector3.one * childScale;  // this is SAFE
+
     }
 
     void Update()

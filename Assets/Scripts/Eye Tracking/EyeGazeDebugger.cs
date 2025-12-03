@@ -12,7 +12,7 @@ public class EyeGazeDebugger : MonoBehaviour
         // 2) Log sometimes so we know it's running
         if (Time.frameCount % 2 == 0)
         {
-            Debug.Log($"[EyeGazeDebugger] pos={transform.position} forward={transform.forward}");
+            //Debug.Log($"[EyeGazeDebugger] pos={transform.position} forward={transform.forward}");
         }
     }
 

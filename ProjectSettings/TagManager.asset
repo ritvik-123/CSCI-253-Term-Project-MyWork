@@ -30,6 +30,9 @@ TagManager:
   - SamplesInfoPanel
   - QDSUIToggleCheckboxRadio
   - GazeTarget
+  - Target
+  - GoalSphere
+  - Distractor
   layers:
   - Default
   - TransparentFX
