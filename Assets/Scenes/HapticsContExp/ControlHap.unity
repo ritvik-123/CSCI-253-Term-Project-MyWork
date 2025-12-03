@@ -2048,20 +2048,6 @@ MonoBehaviour:
   nearBoost: 1
   pitchBend: 0
   spatialBlend: 0.75
-  participantId: P01
-  condition: ConAudio
-  trialIndex: 2
-  autoIncrementTrialIndex: 1
-  autoWriteCsvOnGoal: 1
-  csvFileName: audio_metrics_con.csv
-  taskStartTime: -1
-  taskCompletionTime: -1
-  wrongGrabCount: 0
-  prematureReleaseCount: 0
-  badPlacementCount: 0
-  stateMisinterpretationCount: 0
-  lastCueToActionLatencyMs: -1
-  avgCueToActionLatencyMs: -1
 --- !u!114 &112327017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2084,8 +2070,8 @@ MonoBehaviour:
   baseColorProp: _BaseColor
   emissionProp: _EmissionColor
   idleColor: {r: 0.45, g: 0.85, b: 1, a: 0.16470589}
-  inRangeColor: {r: 0, g: 0.85490197, b: 0.9647059, a: 0.7058824}
-  grabbedColor: {r: 1, g: 0.75, b: 0.35, a: 0.4}
+  inRangeColor: {r: 1, g: 0.7490196, b: 0.34901962, a: 0.7058824}
+  grabbedColor: {r: 0.026531816, g: 1, b: 0, a: 0.4}
   idleSpeed: 0
   inRangeSpeed: 0
   grabbedSpeed: 0
@@ -2098,6 +2084,28 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1140382392741487520, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
   m_PrefabInstance: {fileID: 2063324038}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &112327019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112327013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d01d978853ed549b01fa11ba097d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trialStartTime: -1
+  taskCompletionTime: -1
+  wrongGrabCount: 0
+  prematureReleaseCount: 0
+  badPlacementCount: 0
+  stateMisinterpretationCount: 0
+  lastCueLatencyMs: -1
+  avgCueLatencyMs: -1
+  waitingForAction: 0
+  goalCompleted: 0
 --- !u!1 &114207322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8761486680393694262, guid: 1dfde1da857030f8fb1b860522d9891b, type: 3}
@@ -2636,20 +2644,6 @@ MonoBehaviour:
   nearBoost: 1
   pitchBend: 0
   spatialBlend: 0.75
-  participantId: P01
-  condition: ConAudio
-  trialIndex: 0
-  autoIncrementTrialIndex: 1
-  autoWriteCsvOnGoal: 1
-  csvFileName: audio_metrics_con.csv
-  taskStartTime: -1
-  taskCompletionTime: -1
-  wrongGrabCount: 0
-  prematureReleaseCount: 0
-  badPlacementCount: 0
-  stateMisinterpretationCount: 0
-  lastCueToActionLatencyMs: -1
-  avgCueToActionLatencyMs: -1
 --- !u!114 &128654109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2672,8 +2666,8 @@ MonoBehaviour:
   baseColorProp: _BaseColor
   emissionProp: _EmissionColor
   idleColor: {r: 0.45, g: 0.85, b: 1, a: 0.16470589}
-  inRangeColor: {r: 0, g: 0.8534862, b: 0.9622642, a: 0.69803923}
-  grabbedColor: {r: 1, g: 0.75, b: 0.35, a: 0.4}
+  inRangeColor: {r: 1, g: 0.7490196, b: 0.34901962, a: 0.69803923}
+  grabbedColor: {r: 0.02745098, g: 1, b: 0, a: 0.4}
   idleSpeed: 0
   inRangeSpeed: 0
   grabbedSpeed: 0
@@ -2686,6 +2680,28 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1140382392741487520, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
   m_PrefabInstance: {fileID: 792040122}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &128654111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128654105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d01d978853ed549b01fa11ba097d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trialStartTime: -1
+  taskCompletionTime: -1
+  wrongGrabCount: 0
+  prematureReleaseCount: 0
+  badPlacementCount: 0
+  stateMisinterpretationCount: 0
+  lastCueLatencyMs: -1
+  avgCueLatencyMs: -1
+  waitingForAction: 0
+  goalCompleted: 0
 --- !u!1 &133627090 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 368691882348824396, guid: 1dfde1da857030f8fb1b860522d9891b, type: 3}
@@ -3568,7 +3584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       propertyPath: m_TagString
-      value: GazeTarget
+      value: Target
       objectReference: {fileID: 0}
     - target: {fileID: 6183429325666509986, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       propertyPath: grabRadius
@@ -3586,6 +3602,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6580052421896286153, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3599,6 +3619,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 454025789}
+    - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 454025792}
     - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 454025788}
@@ -5145,6 +5168,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6808072674455342042, guid: 1dfde1da857030f8fb1b860522d9891b, type: 3}
+      propertyPath: m_TagString
+      value: Distractor
+      objectReference: {fileID: 0}
     - target: {fileID: 6919571549166713791, guid: 1dfde1da857030f8fb1b860522d9891b, type: 3}
       propertyPath: m_TagString
       value: Distractor
@@ -5288,6 +5315,10 @@ PrefabInstance:
     - target: {fileID: 9053111873484034541, guid: 1dfde1da857030f8fb1b860522d9891b, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087531542732943008, guid: 1dfde1da857030f8fb1b860522d9891b, type: 3}
+      propertyPath: m_TagString
+      value: Distractor
       objectReference: {fileID: 0}
     - target: {fileID: 9102971915577958635, guid: 1dfde1da857030f8fb1b860522d9891b, type: 3}
       propertyPath: m_Layer
@@ -11379,20 +11410,6 @@ MonoBehaviour:
   nearBoost: 1
   pitchBend: 0
   spatialBlend: 0.75
-  participantId: P01
-  condition: ConAudio
-  trialIndex: 1
-  autoIncrementTrialIndex: 1
-  autoWriteCsvOnGoal: 1
-  csvFileName: audio_metrics_con.csv
-  taskStartTime: -1
-  taskCompletionTime: -1
-  wrongGrabCount: 0
-  prematureReleaseCount: 0
-  badPlacementCount: 0
-  stateMisinterpretationCount: 0
-  lastCueToActionLatencyMs: -1
-  avgCueToActionLatencyMs: -1
 --- !u!114 &454025790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11415,8 +11432,8 @@ MonoBehaviour:
   baseColorProp: _BaseColor
   emissionProp: _EmissionColor
   idleColor: {r: 0.45, g: 0.85, b: 1, a: 0.16470589}
-  inRangeColor: {r: 0, g: 0.85490197, b: 0.9647059, a: 0.6862745}
-  grabbedColor: {r: 1, g: 0.75, b: 0.35, a: 0.4}
+  inRangeColor: {r: 1, g: 0.7490196, b: 0.34901962, a: 0.6862745}
+  grabbedColor: {r: 0.02745098, g: 1, b: 0, a: 0.4}
   idleSpeed: 0
   inRangeSpeed: 0
   grabbedSpeed: 0
@@ -11429,6 +11446,28 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1140382392741487520, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
   m_PrefabInstance: {fileID: 192284593}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &454025792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454025786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d01d978853ed549b01fa11ba097d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trialStartTime: -1
+  taskCompletionTime: -1
+  wrongGrabCount: 0
+  prematureReleaseCount: 0
+  badPlacementCount: 0
+  stateMisinterpretationCount: 0
+  lastCueLatencyMs: -1
+  avgCueLatencyMs: -1
+  waitingForAction: 0
+  goalCompleted: 0
 --- !u!1 &455945663 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7645671461370726630, guid: 1dfde1da857030f8fb1b860522d9891b, type: 3}
@@ -15970,7 +16009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       propertyPath: m_TagString
-      value: GazeTarget
+      value: Target
       objectReference: {fileID: 0}
     - target: {fileID: 6183429325666509986, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       propertyPath: grabRadius
@@ -15988,6 +16027,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6580052421896286153, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -16001,6 +16044,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 128654108}
+    - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 128654111}
     - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 128654107}
@@ -16041,7 +16087,7 @@ MonoBehaviour:
   pulseDistance: 2
   goalDistance: 0.6
   idleColor: {r: 0.8980392, g: 0.39215687, b: 0.5568628, a: 1}
-  pulseColor: {r: 1, g: 0.98039216, b: 0, a: 1}
+  pulseColor: {r: 0.8980392, g: 0.39215687, b: 0.5568628, a: 1}
   goalReachedColor: {r: 0, g: 1, b: 0, a: 1}
   pulseSpeed: 6
   bubbleAlpha: 0.35
@@ -19371,7 +19417,7 @@ MonoBehaviour:
   pulseDistance: 2
   goalDistance: 0.6
   idleColor: {r: 0.8784314, g: 0.8392157, b: 0.87058824, a: 1}
-  pulseColor: {r: 1, g: 0.98039216, b: 0, a: 1}
+  pulseColor: {r: 0.8784314, g: 0.8392157, b: 0.87058824, a: 1}
   goalReachedColor: {r: 0, g: 1, b: 0, a: 1}
   pulseSpeed: 6
   bubbleAlpha: 0.35
@@ -24341,6 +24387,120 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 9389997d549de9974965e906acd8eed1, type: 3}
+--- !u!1 &1307718221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1307718227}
+  - component: {fileID: 1307718226}
+  - component: {fileID: 1307718225}
+  - component: {fileID: 1307718224}
+  - component: {fileID: 1307718223}
+  - component: {fileID: 1307718222}
+  m_Layer: 0
+  m_Name: System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1307718222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307718221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b89a4c8ee0f28e4bad6d27d6e6941a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1307718223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307718221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caef686099df96b44a2069bcbb2d101c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  participantName: P01
+  condition: Control
+  fileName: audio_metrics.csv
+--- !u!114 &1307718224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307718221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b614a9e7bb1f98448aed1e7d1efe4f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  participantName: P01
+  condition: Control
+  fileName: visual_metrics.csv
+  eyeMetrics: {fileID: 1307718226}
+--- !u!114 &1307718225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307718221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288172402d4c87f47955a5432180ca38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1307718226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307718221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c9afa0d6bee9943b2f9688c623a959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gazeOrigin: {fileID: 1268597238}
+  targetTag: Target
+  distractorTag: Distractor
+  maxDistance: 10
+  dwellBreak: 0.25
+  ttff: -1
+  fixationCount: 0
+  totalTargetTime: 0
+  totalDistractorTime: 0
+  fixationRatio: 0
+  dwellDuration: 0
+--- !u!4 &1307718227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307718221}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1309052915 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1635136165139128533, guid: 1dfde1da857030f8fb1b860522d9891b, type: 3}
@@ -31416,7 +31576,7 @@ MonoBehaviour:
   pulseDistance: 2
   goalDistance: 0.6
   idleColor: {r: 0.43137255, g: 0.75686276, b: 0.78431374, a: 1}
-  pulseColor: {r: 1, g: 0.9778552, b: 0, a: 1}
+  pulseColor: {r: 0.43137255, g: 0.75686276, b: 0.78431374, a: 1}
   goalReachedColor: {r: 0, g: 1, b: 0, a: 1}
   pulseSpeed: 6
   bubbleAlpha: 0.35
@@ -35075,7 +35235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       propertyPath: m_TagString
-      value: GazeTarget
+      value: Target
       objectReference: {fileID: 0}
     - target: {fileID: 6183429325666509986, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       propertyPath: grabRadius
@@ -35093,6 +35253,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6580052421896286153, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -35106,6 +35270,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 112327016}
+    - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 112327019}
     - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 112327015}
@@ -36598,6 +36765,7 @@ MeshCollider:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1307718227}
   - {fileID: 2063324038}
   - {fileID: 1344325149}
   - {fileID: 1575542456}

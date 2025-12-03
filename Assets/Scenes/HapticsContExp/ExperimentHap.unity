@@ -2147,6 +2147,9 @@ PrefabInstance:
       addedObject: {fileID: 148100170}
     - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 148100177}
+    - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 148100169}
     - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       insertIndex: -1
@@ -2298,20 +2301,28 @@ MonoBehaviour:
   nearBoost: 1
   pitchBend: 0
   spatialBlend: 0.75
-  participantId: P01
-  condition: ExpAudio
-  trialIndex: 2
-  autoIncrementTrialIndex: 1
-  autoWriteCsvOnGoal: 1
-  csvFileName: audio_metrics_exp.csv
-  taskStartTime: -1
+--- !u!114 &148100177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148100167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d01d978853ed549b01fa11ba097d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trialStartTime: -1
   taskCompletionTime: -1
   wrongGrabCount: 0
   prematureReleaseCount: 0
   badPlacementCount: 0
   stateMisinterpretationCount: 0
-  lastCueToActionLatencyMs: -1
-  avgCueToActionLatencyMs: -1
+  lastCueLatencyMs: -1
+  avgCueLatencyMs: -1
+  waitingForAction: 0
+  goalCompleted: 0
 --- !u!64 &149372018
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4450,6 +4461,7 @@ GameObject:
   - component: {fileID: 312394770}
   - component: {fileID: 312394769}
   - component: {fileID: 312394768}
+  - component: {fileID: 312394772}
   - component: {fileID: 312394767}
   m_Layer: 0
   m_Name: System
@@ -4483,7 +4495,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   participantName: P01
+  condition: Experimental
   fileName: visual_metrics.csv
+  eyeMetrics: {fileID: 312394770}
 --- !u!114 &312394769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4508,10 +4522,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c9afa0d6bee9943b2f9688c623a959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gazeOrigin: {fileID: 1007108251}
-  maxDistance: 10
+  gazeOrigin: {fileID: 1356637633}
   targetTag: Target
   distractorTag: Distractor
+  maxDistance: 10
+  dwellBreak: 0.25
+  ttff: -1
+  fixationCount: 0
+  totalTargetTime: 0
+  totalDistractorTime: 0
+  fixationRatio: 0
+  dwellDuration: 0
 --- !u!4 &312394771
 Transform:
   m_ObjectHideFlags: 0
@@ -4527,6 +4548,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &312394772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312394766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caef686099df96b44a2069bcbb2d101c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  participantName: P01
+  condition: Experimental
+  fileName: audio_metrics.csv
 --- !u!64 &315336597
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6424,7 +6460,7 @@ MonoBehaviour:
   pulseDistance: 2
   goalDistance: 0.6
   idleColor: {r: 0.8980392, g: 0.39215687, b: 0.5568628, a: 1}
-  pulseColor: {r: 1, g: 0.98039216, b: 0, a: 1}
+  pulseColor: {r: 0.8980392, g: 0.39215687, b: 0.5568628, a: 1}
   goalReachedColor: {r: 0, g: 1, b: 0, a: 1}
   pulseSpeed: 6
   bubbleAlpha: 0.35
@@ -7992,7 +8028,7 @@ MonoBehaviour:
   pulseDistance: 2
   goalDistance: 0.6
   idleColor: {r: 0.8784314, g: 0.8392157, b: 0.87058824, a: 1}
-  pulseColor: {r: 1, g: 0.98039216, b: 0, a: 1}
+  pulseColor: {r: 0.8784314, g: 0.83137256, b: 0.87058824, a: 1}
   goalReachedColor: {r: 0, g: 1, b: 0, a: 1}
   pulseSpeed: 6
   bubbleAlpha: 0.35
@@ -10481,7 +10517,7 @@ MonoBehaviour:
   pulseDistance: 2
   goalDistance: 0.6
   idleColor: {r: 0.43137255, g: 0.75686276, b: 0.78431374, a: 1}
-  pulseColor: {r: 1, g: 0.98039216, b: 0, a: 1}
+  pulseColor: {r: 0.43137255, g: 0.75686276, b: 0.78431374, a: 1}
   goalReachedColor: {r: 0, g: 1, b: 0, a: 1}
   pulseSpeed: 6
   bubbleAlpha: 0.35
@@ -11691,8 +11727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614f06871267a9a408dd9249fe4d3a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeOfDay: 2.2
-  auto: 1
+  timeOfDay: 10.8
+  auto: 0
   dayLengthMinutes: 2
   sun: {fileID: 1951292425}
   envSkybox: {fileID: 2100000, guid: 403aa8aa358e8d04cb74486577566d72, type: 2}
@@ -12465,6 +12501,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: daca729a92f52e95abb45a559ca0dcfc, type: 3}
+--- !u!1 &897167149 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1767192433, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 1356637628}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &906597873
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13718,8 +13759,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Eye: 0
   ConfidenceThreshold: 0.5
-  ApplyPosition: 1
-  ApplyRotation: 1
+  ApplyPosition: 0
+  ApplyRotation: 0
   ReferenceFrame: {fileID: 0}
   TrackingMode: 0
 --- !u!114 &1007108254
@@ -17961,6 +18002,9 @@ PrefabInstance:
       addedObject: {fileID: 1332712653}
     - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1332712660}
+    - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1332712652}
     - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       insertIndex: -1
@@ -18112,20 +18156,28 @@ MonoBehaviour:
   nearBoost: 1
   pitchBend: 0
   spatialBlend: 0.75
-  participantId: P01
-  condition: ExpAudio
-  trialIndex: 0
-  autoIncrementTrialIndex: 1
-  autoWriteCsvOnGoal: 1
-  csvFileName: audio_metrics_exp.csv
-  taskStartTime: -1
+--- !u!114 &1332712660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332712649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d01d978853ed549b01fa11ba097d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trialStartTime: -1
   taskCompletionTime: -1
   wrongGrabCount: 0
   prematureReleaseCount: 0
   badPlacementCount: 0
   stateMisinterpretationCount: 0
-  lastCueToActionLatencyMs: -1
-  avgCueToActionLatencyMs: -1
+  lastCueLatencyMs: -1
+  avgCueLatencyMs: -1
+  waitingForAction: 0
+  goalCompleted: 0
 --- !u!64 &1335114311
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18430,7 +18482,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 259873287}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1767192433, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1356637641}
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
 --- !u!4 &1356637629 stripped
 Transform:
@@ -18457,6 +18512,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 1356637628}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1356637641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897167149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!64 &1360717512
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35095,6 +35194,9 @@ PrefabInstance:
       addedObject: {fileID: 2020937187}
     - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 2020937194}
+    - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2020937186}
     - targetCorrespondingSourceObject: {fileID: 2736699618578287006, guid: 63393b02204a14b25afb9e6d4cd002ca, type: 3}
       insertIndex: -1
@@ -35246,20 +35348,28 @@ MonoBehaviour:
   nearBoost: 1
   pitchBend: 0
   spatialBlend: 0.75
-  participantId: P01
-  condition: ExpAudio
-  trialIndex: 1
-  autoIncrementTrialIndex: 1
-  autoWriteCsvOnGoal: 1
-  csvFileName: audio_metrics_exp.csv
-  taskStartTime: -1
+--- !u!114 &2020937194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020937184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d01d978853ed549b01fa11ba097d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trialStartTime: -1
   taskCompletionTime: -1
   wrongGrabCount: 0
   prematureReleaseCount: 0
   badPlacementCount: 0
   stateMisinterpretationCount: 0
-  lastCueToActionLatencyMs: -1
-  avgCueToActionLatencyMs: -1
+  lastCueLatencyMs: -1
+  avgCueLatencyMs: -1
+  waitingForAction: 0
+  goalCompleted: 0
 --- !u!64 &2021429196
 MeshCollider:
   m_ObjectHideFlags: 0

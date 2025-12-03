@@ -79,6 +79,8 @@ public class ManipulationControl : MonoBehaviour
 
             GrabEventSystem.TriggerGrab(gameObject, "Left", delta);
             // Debug.Log($"Grabbed {name} (left hand)");
+
+            TaskTimer.OnFirstGrab();
         }
     }
 
@@ -124,6 +126,8 @@ public class ManipulationControl : MonoBehaviour
 
             GrabEventSystem.TriggerGrab(gameObject, "Right", delta);
             // Debug.Log($"Grabbed {name} (right hand)");
+
+            TaskTimer.OnFirstGrab();
         }
     }
 

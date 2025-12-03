@@ -4,20 +4,18 @@ using UnityEngine.Events;
 
 public class SimpleGoalChecker : MonoBehaviour
 {
-    [Header("Assign objects")]
-    public Transform item; // the movable item (sphere you grab)
-    public Transform goal; // the target (sphere that stays still)
+    [Header("Object References")]
+    public Transform item;   // movable sphere
+    public Transform goal;   // target marker
 
     [Header("Settings")]
-    public float triggerDistance = 0.2f; // how close is "placed in the goal"
+    public float triggerDistance = 0.2f;   // how close counts as "goal reached"
 
     [Header("Events")]
-    public UnityEvent onGoalReached; // hook to AudioControl.PlayGoalAudio
+    public UnityEvent onGoalReached;       // typically calls AudioControl.PlayGoalAudio
 
     public static int goalCount = 0;
-
     public static float lastPlacementAccuracy = 0f;
-
     public static System.Action<int> onAnyGoalIncrement;
 
     bool hasTriggered = false;
@@ -25,35 +23,51 @@ public class SimpleGoalChecker : MonoBehaviour
     void Update()
     {
         if (hasTriggered) return;
-        if (item == null || goal == null) return;
+        if (!item || !goal) return;
 
         float dist = Vector3.Distance(item.position, goal.position);
 
         if (dist <= triggerDistance)
         {
             hasTriggered = true;
-            Debug.Log("SimpleGoalChecker: Goal reached!");
-
             lastPlacementAccuracy = dist;
 
-            onGoalReached?.Invoke(); // this calls AudioControl.PlayGoalAudio
+            Debug.Log("SimpleGoalChecker: Goal reached!");
 
-            StartCoroutine(DestroyItemAfterDelay(1.6f));   // wait 1.6 seconds before destroy
+            onGoalReached?.Invoke();  // This triggers AudioControl.PlayGoalAudio
+
+            StartCoroutine(DestroyItemAfterDelay(1.5f));
         }
     }
 
     private IEnumerator DestroyItemAfterDelay(float delay)
     {
+        // Cache references BEFORE waiting
+        Transform itemRef = item;
+        GameObject itemObj = item ? item.gameObject : null;
+        Vector3 goalPos = goal.position;
+
         yield return new WaitForSeconds(delay);
 
-        if (item != null)
+        if (itemObj != null)
         {
-            Destroy(item.gameObject);
-            SimpleGoalChecker.goalCount++;
-            SimpleGoalChecker.lastPlacementAccuracy = Vector3.Distance(item.position, goal.position);
-            onAnyGoalIncrement?.Invoke(SimpleGoalChecker.goalCount);
-            TaskTimer.MarkTaskNow();
-            MetricsCsvExporter.Instance?.ExportRow();
+            // Compute accuracy BEFORE destruction
+            float finalAccuracy = Vector3.Distance(itemRef.position, goalPos);
+
+            // Destroy
+            Destroy(itemObj);
+
+            // Update global counters
+            goalCount++;
+            lastPlacementAccuracy = finalAccuracy;
+            onAnyGoalIncrement?.Invoke(goalCount);
+
+            // Record task time
+            TaskTimer.EndTask();
+
+            // Export metrics
+            VisualMetricsCsvExporter.Instance?.ExportRow();
         }
     }
+
 }

@@ -12,9 +12,9 @@
   <Project Path="Unity.Timeline.Editor.csproj" />
   <Project Path="Unity.Multiplayer.Center.Editor.csproj" />
   <Project Path="Meta.XR.BuildingBlocks.Editor.csproj" />
-  <Project Path="Unity.RenderPipelines.Core.Editor.csproj" />
   <Project Path="Unity.Collections.csproj" />
   <Project Path="UnityEngine.UI.csproj" />
+  <Project Path="Unity.RenderPipelines.Core.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.2D.Runtime.csproj" />
   <Project Path="Meta.Voice.VSDKHub.Editor.csproj" />
   <Project Path="Oculus.Platform.csproj" />
@@ -71,12 +71,12 @@
   <Project Path="Unity.Rendering.LightTransport.Runtime.csproj" />
   <Project Path="Oculus.Interaction.OVR.Editor.csproj" />
   <Project Path="AssistantVoiceCommandCommon.csproj" />
-  <Project Path="Unity.XR.MockHMD.csproj" />
   <Project Path="Unity.Burst.Editor.csproj" />
   <Project Path="Meta.XR.Editor.Tags.csproj" />
   <Project Path="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.csproj" />
   <Project Path="Unity.Rider.Editor.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.DeviceSimulator.csproj" />
+  <Project Path="Unity.XR.MockHMD.csproj" />
   <Project Path="Unity.XR.ARFoundation.VisualScripting.csproj" />
   <Project Path="Meta.XR.Editor.TelemetryUI.csproj" />
   <Project Path="Meta.XR.Editor.UserInterface.csproj" />

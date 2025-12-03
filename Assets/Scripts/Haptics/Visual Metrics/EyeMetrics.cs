@@ -2,64 +2,110 @@ using UnityEngine;
 
 public class EyeMetrics : MonoBehaviour
 {
-    public static float timeToFirstFixation = -1f;
-    public static float totalTargetFixation = 0f;
+    [Header("Gaze Source")]
+    public Transform gazeOrigin;
 
-    [Header("Eye gaze source")]
-    public Transform gazeOrigin;         // assign Left Eye here in Inspector
+    [Header("Tags")]
+    public string targetTag = "Target";
+    public string distractorTag = "Distractor";
 
     [Header("Settings")]
-    public float maxDistance = 50f;
-    public string targetTag = "Target";  // your grabbable spheres
+    public float maxDistance = 40f;
+    public float dwellBreak = 0.25f;
 
-    bool hasFirstFixation = false;
+    // Public metrics
+    public float ttff = -1f;
+    public int fixationCount = 0;
+    public float totalTargetTime = 0f;
+    public float totalDistractorTime = 0f;
+    public float fixationRatio = 0f;
+    public float dwellDuration = 0f;
+
+    // Internals
     float trialTime = 0f;
+    bool firstFix = false;
+    bool fixating = false;
+    float currentFix = 0f;
+    float longestFix = 0f;
+    float breakTimer = 0f;
 
-    void Awake()
+    void Start()
     {
-        Debug.Log("[EyeMetrics] Awake");
+        ResetMetrics();
+    }
 
-        timeToFirstFixation = -1f;
-        totalTargetFixation = 0f;
-        hasFirstFixation = false;
+    public void ResetMetrics()
+    {
+        ttff = -1f;
+        fixationCount = 0;
+        totalTargetTime = 0f;
+        totalDistractorTime = 0f;
+        fixationRatio = 0f;
+        dwellDuration = 0f;
+
         trialTime = 0f;
+        firstFix = false;
+        fixating = false;
+        currentFix = 0f;
+        longestFix = 0f;
+        breakTimer = 0f;
     }
 
     void Update()
     {
-        // 1) Check if script is running and gaze is assigned
-        if (gazeOrigin == null)
-        {
-            Debug.LogWarning("[EyeMetrics] gazeOrigin is NULL");
-            return;
-        }
+        if (!gazeOrigin) return;
 
         trialTime += Time.deltaTime;
 
         RaycastHit hit;
+        bool didHit = Physics.Raycast(gazeOrigin.position, gazeOrigin.forward, out hit, maxDistance);
+        string tag = didHit ? hit.collider.tag : "";
 
-        // Always draw a yellow ray so you can see it in Scene view
-        Debug.DrawRay(gazeOrigin.position, gazeOrigin.forward * maxDistance, Color.yellow);
-
-        if (Physics.Raycast(gazeOrigin.position, gazeOrigin.forward, out hit, maxDistance))
+        if (didHit && tag == targetTag)
         {
-            // Overwrite with green if we hit something
-            Debug.DrawRay(gazeOrigin.position, gazeOrigin.forward * maxDistance, Color.green);
-
-            // TEMP: log everything we hit
-            Debug.Log("[EyeMetrics] Gaze hit: " + hit.collider.name + " (tag: " + hit.collider.tag + ")");
-
-            if (hit.collider.CompareTag(targetTag))
+            if (!firstFix)
             {
-                totalTargetFixation += Time.deltaTime;
+                firstFix = true;
+                ttff = trialTime;
+            }
 
-                if (!hasFirstFixation)
+            totalTargetTime += Time.deltaTime;
+
+            if (!fixating)
+            {
+                fixating = true;
+                fixationCount++;
+                currentFix = 0f;
+                breakTimer = 0f;
+            }
+
+            currentFix += Time.deltaTime;
+        }
+        else
+        {
+            if (didHit && tag == distractorTag)
+                totalDistractorTime += Time.deltaTime;
+
+            if (fixating)
+            {
+                breakTimer += Time.deltaTime;
+
+                if (breakTimer >= dwellBreak)
                 {
-                    hasFirstFixation = true;
-                    timeToFirstFixation = trialTime;
-                    Debug.Log("[EyeMetrics] First fixation on Target at " + timeToFirstFixation + "s");
+                    fixating = false;
+
+                    if (currentFix > longestFix)
+                        longestFix = currentFix;
+
+                    currentFix = 0f;
                 }
             }
         }
+
+        dwellDuration = longestFix;
+
+        fixationRatio = (totalDistractorTime > 0)
+            ? totalTargetTime / totalDistractorTime
+            : totalTargetTime;
     }
 }
