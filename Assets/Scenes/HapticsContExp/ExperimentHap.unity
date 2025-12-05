@@ -4463,6 +4463,7 @@ GameObject:
   - component: {fileID: 312394768}
   - component: {fileID: 312394772}
   - component: {fileID: 312394767}
+  - component: {fileID: 312394773}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -4494,7 +4495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b614a9e7bb1f98448aed1e7d1efe4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  participantName: P01
+  participantName: Keyur
   condition: Experimental
   fileName: visual_metrics.csv
   eyeMetrics: {fileID: 312394770}
@@ -4560,9 +4561,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caef686099df96b44a2069bcbb2d101c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  participantName: P01
+  participantName: Keyur
   condition: Experimental
   fileName: audio_metrics.csv
+--- !u!114 &312394773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312394766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc724e009bfe2aa42be658dad646e195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveProvider: {fileID: 1403616091}
+  rightTrigger:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Trigger
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 5159f0d4-2036-42ae-bbe2-e64ab683687a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  normalSpeed: 3.5
+  sprintSpeed: 5.5
+  triggerThreshold: 0.1
 --- !u!64 &315336597
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28080,6 +28109,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: e5a1d3c72165df7d19cb2bca033533c4, type: 3}
+--- !u!114 &1403616091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 153982007679157697, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 1356637628}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1e8c997df241c1a67045eeac79b41b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!64 &1403930318
 MeshCollider:
   m_ObjectHideFlags: 0

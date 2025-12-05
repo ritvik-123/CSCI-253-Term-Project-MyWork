@@ -71,12 +71,12 @@
   <Project Path="Unity.Rendering.LightTransport.Runtime.csproj" />
   <Project Path="Oculus.Interaction.OVR.Editor.csproj" />
   <Project Path="AssistantVoiceCommandCommon.csproj" />
+  <Project Path="Unity.XR.MockHMD.csproj" />
   <Project Path="Unity.Burst.Editor.csproj" />
   <Project Path="Meta.XR.Editor.Tags.csproj" />
   <Project Path="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.csproj" />
   <Project Path="Unity.Rider.Editor.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.DeviceSimulator.csproj" />
-  <Project Path="Unity.XR.MockHMD.csproj" />
   <Project Path="Unity.XR.ARFoundation.VisualScripting.csproj" />
   <Project Path="Meta.XR.Editor.TelemetryUI.csproj" />
   <Project Path="Meta.XR.Editor.UserInterface.csproj" />
